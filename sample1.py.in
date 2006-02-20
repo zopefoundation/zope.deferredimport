@@ -1,0 +1,16 @@
+import zope.deferredimport
+
+four = 4
+
+zope.deferredimport.define(
+    sample2 = 'zope.deferredimport.sample2',
+    one = 'zope.deferredimport.sample2:x',
+    two = 'zope.deferredimport.sample2:C.y',
+    )
+
+zope.deferredimport.deprecated(
+    "Will go away in 2007.",
+    three = 'zope.deferredimport.sample2:C',
+    )
+
+five = 5

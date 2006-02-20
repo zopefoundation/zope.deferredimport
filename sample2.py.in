@@ -1,0 +1,6 @@
+print "Sampe 2 imported!"
+
+x = 1
+
+class C:
+    y = 2
