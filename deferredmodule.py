@@ -15,7 +15,7 @@
 
 $Id$
 """
-
+import types
 import sys
 import warnings
 
@@ -76,7 +76,7 @@ def getClass():
     module = sys.modules[__name__]
     cls = module.__class__
     if not issubclass(cls, Module):
-        cls = type(__name__ + 'Class', (Module, ), {})
+        cls = type('Module', (Module, ), {})
         module = cls(module)
         sys.modules[__name__] = module
     return cls
@@ -89,5 +89,11 @@ def define(**names):
 def deprecated(message, **names):
     cls = getClass()
     for name, specifier in names.iteritems():
+        setattr(cls, name, DeferredAndDeprecated(name, specifier, message))
+
+def deprecatedFrom(message, module, *names):
+    cls = getClass()
+    for name in names:
+        specifier = module + ':' + name
         setattr(cls, name, DeferredAndDeprecated(name, specifier, message))
     

@@ -13,4 +13,10 @@ zope.deferredimport.deprecated(
     three = 'zope.deferredimport.sample2:C',
     )
 
+zope.deferredimport.deprecatedFrom(
+    "Will go away in 2007.",
+    'zope.deferredimport.sample2',
+    'z', 'q',
+    )
+
 five = 5

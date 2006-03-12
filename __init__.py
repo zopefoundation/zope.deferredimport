@@ -1,1 +1,3 @@
-from zope.deferredimport.deferredmodule import define, deprecated
+from zope.deferredimport.deferredmodule import (
+    define, deprecated, deprecatedFrom,
+    )
