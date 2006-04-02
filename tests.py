@@ -23,17 +23,18 @@ class OutErr:
 
 def setUp(test):
     d = test.globs['tmp_d'] = tempfile.mkdtemp('deferredimport')
-    shutil.copy(
-        os.path.join(os.path.dirname(__file__), 'sample1.py.in'),
-        os.path.join(d, 'sample1.py'),
-        )
-    shutil.copy(
-        os.path.join(os.path.dirname(__file__), 'sample2.py.in'),
-        os.path.join(d, 'sample2.py'),
-        )
+
+    def create_module(**modules):
+        for name, src in modules.iteritems():
+            f = open(os.path.join(d, name+'.py'), 'w')
+            f.write(src)
+            f.close()
+            test.globs['created_modules'].append(name)
+
+    test.globs['created_modules'] = []
+    test.globs['create_module'] = create_module
+
     zope.deferredimport.__path__.append(d)
-    sys.modules.pop('zope.deferredimport.sample1', None)
-    sys.modules.pop('zope.deferredimport.sample2', None)
 
     test.globs['oldstderr'] = sys.stderr
     sys.stderr = OutErr
@@ -43,8 +44,8 @@ def tearDown(test):
 
     zope.deferredimport.__path__.pop()
     shutil.rmtree(test.globs['tmp_d'])
-    sys.modules.pop('zope.deferredimport.sample1', None)
-    sys.modules.pop('zope.deferredimport.sample2', None)
+    for name in test.globs['created_modules']:
+        sys.modules.pop(name, None)
 
 def test_suite():
     checker = renormalizing.RENormalizing((

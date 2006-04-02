@@ -18,15 +18,8 @@ $Id$
 import types
 import sys
 import warnings
+import zope.proxy
 
-class Module(object):
-
-    def __init__(self, old):
-        self.__dict__ = old.__dict__
-        self.__original_module__ = old
-
-    def __repr__(self):
-        return `self.__original_module__`
 
 class Deferred(object):
 
@@ -36,9 +29,7 @@ class Deferred(object):
 
     _import_chicken = {}, {}, ['*']
 
-    def __get__(self, inst, class_):
-        if inst is None:
-            return self
+    def get(self):
 
         specifier = self.specifier
         if ':' in specifier:
@@ -50,50 +41,74 @@ class Deferred(object):
         if name:
             for n in name.split('.'):
                 v = getattr(v, n)
-        setattr(inst, self.__name__, v)
         return v
 
 class DeferredAndDeprecated(Deferred):
 
     def __init__(self, name, specifier, message):
-        self.__name__ = name
-        self.specifier = specifier
+        super(DeferredAndDeprecated, self).__init__(name, specifier)
         self.message = message
-        
 
-    def __get__(self, inst, class_):
-        if inst is None:
-            return self
-
+    def get(self):
         warnings.warn(
             self.__name__ + " is deprecated. " + self.message,
-            DeprecationWarning, stacklevel=2)
-        return Deferred.__get__(self, inst, class_)
+            DeprecationWarning, stacklevel=3)
+        
+        return super(DeferredAndDeprecated, self).get()
 
 
-def getClass():
-    __name__ = sys._getframe(2).f_globals['__name__']
+class ModuleProxy(zope.proxy.ProxyBase):
+    __slots__ = ('__deferred_definitions__', )
+
+    def __init__(self, module):
+        super(ModuleProxy, self).__init__(module)
+        self.__deferred_definitions__ = {}
+
+    def __getattr__(self, name):
+        try:
+            get = self.__deferred_definitions__.pop(name)
+        except KeyError:
+            raise AttributeError, name
+        v = get.get()
+        setattr(self, name, v)
+        return v
+
+def initialize(level=1):
+    __name__ = sys._getframe(level).f_globals['__name__']
     module = sys.modules[__name__]
-    cls = module.__class__
-    if not issubclass(cls, Module):
-        cls = type('Module', (Module, ), {})
-        module = cls(module)
+    if not (type(module) is ModuleProxy):
+        module = ModuleProxy(module)
         sys.modules[__name__] = module
-    return cls
+
+    if level == 1:
+        return
+    return module
 
 def define(**names):
-    cls = getClass()
+    module = initialize(2)
+    __deferred_definitions__ = module.__deferred_definitions__
     for name, specifier in names.iteritems():
-        setattr(cls, name, Deferred(name, specifier))
+        __deferred_definitions__[name] = Deferred(name, specifier)
+
+def defineFrom(from_name, *names):
+    module = initialize(2)
+    __deferred_definitions__ = module.__deferred_definitions__
+    for name in names:
+        specifier = from_name + ':' + name
+        __deferred_definitions__[name] = Deferred(name, specifier)
 
 def deprecated(message, **names):
-    cls = getClass()
+    module = initialize(2)
+    __deferred_definitions__ = module.__deferred_definitions__
     for name, specifier in names.iteritems():
-        setattr(cls, name, DeferredAndDeprecated(name, specifier, message))
+        __deferred_definitions__[name] = DeferredAndDeprecated(
+            name, specifier, message)
 
-def deprecatedFrom(message, module, *names):
-    cls = getClass()
+def deprecatedFrom(message, from_name, *names):
+    module = initialize(2)
+    __deferred_definitions__ = module.__deferred_definitions__
     for name in names:
-        specifier = module + ':' + name
-        setattr(cls, name, DeferredAndDeprecated(name, specifier, message))
+        specifier = from_name + ':' + name
+        __deferred_definitions__[name] = DeferredAndDeprecated(
+            name, specifier, message)
     
