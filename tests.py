@@ -11,7 +11,7 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-import os, re, shutil, sys, tempfile, unittest
+import os, re, shutil, sys, tempfile, unittest, warnings
 from zope.testing import doctest, renormalizing
 import zope.deferredimport
 
@@ -20,6 +20,22 @@ class OutErr:
     @staticmethod
     def write(message):
         sys.stdout.write(message)
+
+def warn(message, type_, stacklevel):
+    frame = sys._getframe(stacklevel)
+    path = frame.f_globals['__file__']
+    file = open(path)
+    lineno = frame.f_lineno
+    for i in range(lineno):
+        line = file.readline()
+
+    print "%s:%s: %s: %s\n  %s" % (
+        path,
+        frame.f_lineno,
+        type_.__name__,
+        message,
+        line.strip(),
+        )
 
 def setUp(test):
     d = test.globs['tmp_d'] = tempfile.mkdtemp('deferredimport')
@@ -39,6 +55,9 @@ def setUp(test):
     test.globs['oldstderr'] = sys.stderr
     sys.stderr = OutErr
 
+    test.globs['saved_warn'] = warnings.warn
+    warnings.warn = warn
+
 def tearDown(test):
     sys.stderr = test.globs['oldstderr'] 
 
@@ -46,6 +65,7 @@ def tearDown(test):
     shutil.rmtree(test.globs['tmp_d'])
     for name in test.globs['created_modules']:
         sys.modules.pop(name, None)
+    warnings.warn = test.globs['saved_warn']
 
 def test_suite():
     checker = renormalizing.RENormalizing((
