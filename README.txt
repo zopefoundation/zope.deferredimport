@@ -296,15 +296,14 @@ deprecation message:
 
     >>> from zope.deferredimport import deprecatedModule
     >>> deprecatedModule('deferredsample', 'zope.deferredimport',
-    ...                  'It is now available under zope.deferredimport.')
+    ...     'deferredsample has been renamed to zope.deferredimport.')
 
 We can now import things from the "old" location:
 
     >>> from deferredsample import deprecated
     ... doctest: +NORMALIZE_WHITESPACE
     zope/deferredimport/README.txt:1: DeprecationWarning:
-            zope.deferredimport is deprecated. It is now available
-            under zope.deferredimport.
+            deferredsample has been renamed to zope.deferredimport.
       Deferred Import
 
 The deprecation warning won't be shown a second time:
