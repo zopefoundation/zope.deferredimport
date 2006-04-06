@@ -111,4 +111,29 @@ def deprecatedFrom(message, from_name, *names):
         specifier = from_name + ':' + name
         __deferred_definitions__[name] = DeferredAndDeprecated(
             name, specifier, message)
-    
+
+class DeferredDeprecatedModule(object):
+    __slots__ = ('__module_name', '__message', '__orig_module')
+
+    def __init__(self, module_name, message):
+        self.__module_name = module_name
+        self.__message = message
+        self.__orig_module = None
+
+    def __getattribute__(self, name):
+        if name.startswith('_DeferredDeprecatedModule__'):
+            return object.__getattribute__(self, name)
+
+        if self.__orig_module is None:
+            self.__orig_module = __import__(
+                self.__module_name, {}, {}, ['*'])
+            warnings.warn(self.__message, DeprecationWarning, 2)
+        return getattr(self.__orig_module, name)
+
+    def __setattr__(self, name, value):
+        if name.startswith('_DeferredDeprecatedModule__'):
+            return object.__setattr__(self, name, value)
+        setattr(self.__orig_module, name, value)
+
+def deprecatedModule(old, new, message):
+    sys.modules[old] = DeferredDeprecatedModule(new, message)
