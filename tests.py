@@ -69,7 +69,7 @@ def tearDown(test):
 
 def test_suite():
     checker = renormalizing.RENormalizing((
-        (re.compile('.+/README.txt'), 'README.txt'),
+        (re.compile(r'.+[/\]README.txt'), 'README.txt'),
         ))
     return doctest.DocFileSuite(
         'README.txt',
