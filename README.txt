@@ -16,7 +16,7 @@ where module is the dotted name of the module and name is a, possibly
 dotted, name of an object within the module.
 
 To see how this works, we'll create some sample modules within the
-zope.deferredimport package.  We'll actually use a helper function 
+zope.deferredimport package.  We'll actually use a helper function
 specific to this document to define the modules inline so we can
 easily see what's in them.  Let's start by defining a module, sample1,
 that defined some things to be imported:
@@ -24,17 +24,17 @@ that defined some things to be imported:
     >>> create_module(sample1 = '''
     ...
     ... print "Sampe 1 imported!"
-    ... 
+    ...
     ... x = 1
-    ... 
+    ...
     ... class C:
     ...     y = 2
-    ... 
+    ...
     ... z = 3
     ... q = 4
     ...
     ... ''')
-    
+
 Note that the module starts by printing a message.  This allows us to
 see when the module is actually imported.  Now, let's define a module
 that imports some names from this module:
@@ -43,13 +43,13 @@ that imports some names from this module:
     >>> create_module(sample2 = '''
     ...
     ... import zope.deferredimport
-    ... 
+    ...
     ... zope.deferredimport.define(
     ...     sample1 = 'zope.deferredimport.sample1',
     ...     one = 'zope.deferredimport.sample1:x',
     ...     two = 'zope.deferredimport.sample1:C.y',
     ...     )
-    ... 
+    ...
     ... three = 3
     ... x = 4
     ... def getx():
@@ -77,7 +77,7 @@ access a variable:
     >>> zope.deferredimport.sample2.sample1 is zope.deferredimport.sample1
     True
 
-Note that a deferred attribute appears in a module's dictionary *after* 
+Note that a deferred attribute appears in a module's dictionary *after*
 it is accessed the first time:
 
     >>> 'two' in zope.deferredimport.sample2.__dict__
@@ -90,7 +90,7 @@ it is accessed the first time:
     True
 
 When deferred imports are used, the original module is replaced with a
-proxy. 
+proxy.
 
     >>> type(zope.deferredimport.sample2)
     <class 'zope.deferredimport.deferredmodule.ModuleProxy'>
@@ -113,22 +113,22 @@ In the example above, the modules were fairly simple.  Let's look at a
 more complicated example.
 
     >>> create_module(sample3 = '''
-    ... 
+    ...
     ... import zope.deferredimport
     ... import zope.deferredimport.sample4
-    ... 
+    ...
     ... zope.deferredimport.define(
     ...     sample1 = 'zope.deferredimport.sample1',
     ...     one = 'zope.deferredimport.sample1:x',
     ...     two = 'zope.deferredimport.sample1:C.y',
     ...     )
-    ... 
+    ...
     ... x = 1
     ...
     ... ''')
 
     >>> create_module(sample4 = '''
-    ... 
+    ...
     ... import sample3
     ...
     ... def getone():
@@ -169,24 +169,24 @@ modules, as in:
 
 
     >>> create_module(sample5 = '''
-    ... 
+    ...
     ... import zope.deferredimport
     ... zope.deferredimport.initialize()
     ...
     ... import zope.deferredimport.sample6
-    ... 
+    ...
     ... zope.deferredimport.define(
     ...     sample1 = 'zope.deferredimport.sample1',
     ...     one = 'zope.deferredimport.sample1:x',
     ...     two = 'zope.deferredimport.sample1:C.y',
     ...     )
-    ... 
+    ...
     ... x = 1
     ...
     ... ''')
 
     >>> create_module(sample6 = '''
-    ... 
+    ...
     ... import sample5
     ...
     ... def getone():
@@ -211,7 +211,7 @@ Lets define a module that has deprecated attributes defined as
 deferred imports:
 
     >>> create_module(sample7 = '''
-    ... 
+    ...
     ... import zope.deferredimport
     ... zope.deferredimport.initialize()
     ...
@@ -230,7 +230,7 @@ warning:
     >>> import zope.deferredimport.sample7
     >>> zope.deferredimport.sample7.x
     ... doctest: +NORMALIZE_WHITESPACE
-    zope/deferredimport/README.txt:1: DeprecationWarning: 
+    zope/deferredimport/README.txt:1: DeprecationWarning:
                 x is deprecated. Import from sample1 instead
       Deferred Import
     1
@@ -248,7 +248,7 @@ can use defineFrom or deprecatedFrom to do that:
 
 
     >>> create_module(sample8 = '''
-    ... 
+    ...
     ... import zope.deferredimport
     ...
     ... zope.deferredimport.deprecatedFrom(
