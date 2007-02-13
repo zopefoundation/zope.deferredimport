@@ -18,13 +18,10 @@ $Id$
 
 import os
 
-try:
-    from setuptools import setup, Extension
-except ImportError, e:
-    from distutils.core import setup, Extension
+from setuptools import setup, find_packages
 
 setup(name='zope.deferredimport',
-      version='3.3-dev',
+      version='3.3dev',
       url='http://svn.zope.org/zope.deferredimport',
       license='ZPL 2.1',
       description='Zope Deferredimport',
@@ -39,7 +36,7 @@ setup(name='zope.deferredimport',
                        "the module and name is a, possibly dotted, name of"
                        "an object within the module.",
 
-      packages=['zope', 'zope.deferredimport'],
+      packages=find_packages('src'),
       package_dir = {'': 'src'},
 
       namespace_packages=['zope',],
