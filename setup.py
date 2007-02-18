@@ -12,38 +12,39 @@
 #
 ##############################################################################
 """Setup for zope.deferredimport package
-
-$Id$
 """
 
 import os
-
 from setuptools import setup, find_packages
 
-setup(name='zope.deferredimport',
-      version='3.3dev',
-      url='http://svn.zope.org/zope.deferredimport',
-      license='ZPL 2.1',
-      description='Zope Deferredimport',
-      author='Zope Corporation and Contributors',
-      author_email='zope3-dev@zope.org',
-      long_description="The zope.deferredimport.define function can be used to"
-                       "define one or more names to be imported when they are"
-                       "accessed.  Simply provide names as keyword arguments"
-                       "with import specifiers as values.  The import"
-                       "specifiers are given as strings of the form"
-                       "'module:name', where module is the dotted name of"
-                       "the module and name is a, possibly dotted, name of"
-                       "an object within the module.",
+def read(*rnames):
+    return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
+name='zope.deferredimport'
+setup(
+    name=name,
+    version='1.0',
+    url='http://www.python.org/pypi/zope.deferredimport',
+    license='ZPL 2.1',
+    description='Zope Deferredimport',
+    author='Zope Corporation and Contributors',
+    author_email='zope3-dev@zope.org',
+    long_description=(
+        read('README.txt')
+        + '\n' +
+        'Detailed Documentation\n'
+        '**********************\n'
+        + '\n' +
+        read('src', 'zope', 'deferredimport', 'README.txt')
+        + '\n' +
+        'Download\n'
+        '**********************\n'
+        ),
+      
       packages=find_packages('src'),
       package_dir = {'': 'src'},
-
       namespace_packages=['zope',],
-      tests_require = ['zope.testing'],
-      install_requires=['zope.interface',
-                        'zope.proxy'],
+      install_requires=['zope.interface', 'zope.proxy', 'setuptools'],
       include_package_data = True,
-
       zip_safe = False,
       )
