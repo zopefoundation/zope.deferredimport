@@ -10,3 +10,12 @@ can also cause deprecation warnings to be issued when a variable is
 used.
 
 .. contents::
+
+Releases
+********
+
+==================
+1.0   (2007/02/18)
+==================
+
+Initial public release zope.deferredimport
