@@ -46,7 +46,7 @@ setup(
       packages=find_packages('src'),
       package_dir = {'': 'src'},
       namespace_packages=['zope',],
-      install_requires=['zope.interface', 'zope.proxy', 'setuptools'],
+      install_requires=['zope.proxy', 'setuptools'],
       include_package_data = True,
       zip_safe = False,
       )
