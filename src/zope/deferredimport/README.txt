@@ -160,11 +160,11 @@ Funny, let's try getone again:
     1
 
 The problem is that sample4 obtained sample3 before sample4 was
-replaced by a proxy.  This example is slightly pathalogical because it
+replaced by a proxy.  This example is slightly pathological because it
 requires a circular import and a relative import, but the bug
 introduced is very subtle.  To guard against this, you should define
-defered imports ebfore importing any other modules.  Alternatively,
-you can call the initialize fuction before importing any other
+deferred imports before importing any other modules.  Alternatively,
+you can call the initialize function before importing any other
 modules, as in:
 
 
