@@ -25,7 +25,7 @@ def read(*rnames):
 name='zope.deferredimport'
 setup(
     name=name,
-    version = '3.4.0b1',
+    version = '3.4.0b2',
     url='http://www.python.org/pypi/zope.deferredimport',
     license='ZPL 2.1',
     description='Zope Deferredimport',
