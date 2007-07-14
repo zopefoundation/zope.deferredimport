@@ -22,25 +22,22 @@ from setuptools import setup, find_packages
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
-name='zope.deferredimport'
 setup(
-    name=name,
+    name='zope.deferredimport',
     version = '3.4.0b2',
     url='http://www.python.org/pypi/zope.deferredimport',
     license='ZPL 2.1',
-    description='Zope Deferredimport',
+    description='zope.deferredimport allows you to perform imports names '
+    'that will only be resolved when used in the code.',
     author='Zope Corporation and Contributors',
     author_email='zope3-dev@zope.org',
     long_description=(
         read('README.txt')
         + '\n' +
         'Detailed Documentation\n'
-        '**********************\n'
+        '======================\n'
         + '\n' +
         read('src', 'zope', 'deferredimport', 'README.txt')
-        + '\n' +
-        'Download\n'
-        '**********************\n'
         ),
       
       packages=find_packages('src'),
