@@ -10,6 +10,12 @@ used.
 Changes
 =======
 
+3.4.0 (2007/07/19)
+------------------
+
+Finished release of zope.deferredimport.
+
+
 3.4.0b1 (2007/07/09)
 --------------------
 
