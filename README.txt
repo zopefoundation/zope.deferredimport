@@ -10,14 +10,20 @@ used.
 Changes
 =======
 
+3.5.0 (unreleased)
+------------------
+
+- Added support to bootstrap on Jython.
+
+
 3.4.0 (2007/07/19)
 ------------------
 
-Finished release of zope.deferredimport.
+- Finished release of zope.deferredimport.
 
 
 3.4.0b1 (2007/07/09)
 --------------------
 
-Initial release as a separate project, corresponds to zope.deferredimport
-from Zope 3.4.0b1.
+- Initial release as a separate project, corresponds to zope.deferredimport
+  from Zope 3.4.0b1.
