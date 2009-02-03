@@ -73,6 +73,24 @@ class ModuleProxy(zope.proxy.ProxyBase):
         return v
 
 def initialize(level=1):
+    """Prepare a module to support deferred imports.
+
+    Modules do not need to call this directly, because the
+    `define*` and `deprecated*` functions call it.
+
+    This is intended to be called from the module to be prepared.
+    The implementation wraps a proxy around the module and replaces
+    the entry in sys.modules with the proxy.  It does no harm to
+    call this function more than once for a given module, because
+    this function does not re-wrap a proxied module.
+
+    The level parameter specifies a relative stack depth.
+    When this function is called directly by the module, level should be 1.
+    When this function is called by a helper function, level should
+    increase with the depth of the stack.
+
+    Returns nothing when level is 1; otherwise returns the proxied module.
+    """
     __name__ = sys._getframe(level).f_globals['__name__']
     module = sys.modules[__name__]
     if not (type(module) is ModuleProxy):
@@ -84,12 +102,23 @@ def initialize(level=1):
     return module
 
 def define(**names):
+    """Define deferred imports using keyword parameters.
+
+    Each parameter specifies the importable name and how to import it.
+    Use `module:name` syntax to import a name from a module, or `module`
+    (no colon) to import a module.
+    """
     module = initialize(2)
     __deferred_definitions__ = module.__deferred_definitions__
     for name, specifier in names.iteritems():
         __deferred_definitions__[name] = Deferred(name, specifier)
 
 def defineFrom(from_name, *names):
+    """Define deferred imports from a particular module.
+
+    The from_name specifies which module to import.
+    The rest of the parameters specify names to import from that module.
+    """
     module = initialize(2)
     __deferred_definitions__ = module.__deferred_definitions__
     for name in names:
@@ -97,6 +126,15 @@ def defineFrom(from_name, *names):
         __deferred_definitions__[name] = Deferred(name, specifier)
 
 def deprecated(message, **names):
+    """Define deferred and deprecated imports using keyword parameters.
+
+    The first use of each name will generate a deprecation warning with
+    the given message.
+
+    Each parameter specifies the importable name and how to import it.
+    Use `module:name` syntax to import a name from a module, or `module`
+    (no colon) to import a module.
+    """
     module = initialize(2)
     __deferred_definitions__ = module.__deferred_definitions__
     for name, specifier in names.iteritems():
@@ -104,6 +142,14 @@ def deprecated(message, **names):
             name, specifier, message)
 
 def deprecatedFrom(message, from_name, *names):
+    """Define deferred and deprecated imports from a particular module.
+
+    The first use of each name will generate a deprecation warning with
+    the given message.
+
+    The from_name specifies which module to import.
+    The rest of the parameters specify names to import from that module.
+    """
     module = initialize(2)
     __deferred_definitions__ = module.__deferred_definitions__
     for name in names:

@@ -15,6 +15,8 @@ Changes
 
 - Added support to bootstrap on Jython.
 
+- Added reference documentation.
+
 
 3.4.0 (2007/07/19)
 ------------------
