@@ -10,7 +10,7 @@ used.
 Changes
 =======
 
-3.5.0 (unreleased)
+3.5.0 (2009-02-04)
 ------------------
 
 - Added support to bootstrap on Jython.
