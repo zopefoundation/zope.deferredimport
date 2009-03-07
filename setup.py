@@ -34,6 +34,8 @@ setup(
     long_description=(
         read('README.txt')
         + '\n' +
+        read('CHANGES.txt')
+        + '\n' +
         'Detailed Documentation\n'
         '======================\n'
         + '\n' +
