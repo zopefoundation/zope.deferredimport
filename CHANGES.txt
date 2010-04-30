@@ -4,7 +4,7 @@ Changes
 3.5.1 (unreleased)
 ------------------
 
-- ...
+- Prefer the standard libraries doctest module to the one from zope.testing.
 
 3.5.0 (2009-02-04)
 ------------------
@@ -13,12 +13,10 @@ Changes
 
 - Added reference documentation.
 
-
 3.4.0 (2007-07-19)
 ------------------
 
 - Finished release of zope.deferredimport.
-
 
 3.4.0b1 (2007-07-09)
 --------------------

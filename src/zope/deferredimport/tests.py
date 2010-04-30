@@ -11,8 +11,11 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-import os, re, shutil, sys, tempfile, unittest, warnings
-from zope.testing import doctest, renormalizing
+
+import doctest
+import os, re, shutil, sys, tempfile, warnings
+
+from zope.testing import renormalizing
 import zope.deferredimport
 
 class OutErr:
@@ -77,7 +80,3 @@ def test_suite():
         optionflags=doctest.NORMALIZE_WHITESPACE,
         checker=checker,
         )
-
-if __name__ == '__main__':
-    unittest.main(defaultTest='test_suite')
-
