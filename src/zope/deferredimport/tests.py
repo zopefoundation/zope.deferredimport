@@ -13,16 +13,23 @@
 ##############################################################################
 
 import doctest
-import os, re, shutil, sys, tempfile, warnings
+import os
+import re
+import shutil
+import sys
+import tempfile
+import warnings
 
 from zope.testing import renormalizing
 import zope.deferredimport
+
 
 class OutErr:
 
     @staticmethod
     def write(message):
         sys.stdout.write(message)
+
 
 def warn(message, type_, stacklevel):
     frame = sys._getframe(stacklevel)
@@ -39,6 +46,7 @@ def warn(message, type_, stacklevel):
         message,
         line.strip(),
         )
+
 
 def setUp(test):
     d = test.globs['tmp_d'] = tempfile.mkdtemp('deferredimport')
@@ -61,6 +69,7 @@ def setUp(test):
     test.globs['saved_warn'] = warnings.warn
     warnings.warn = warn
 
+
 def tearDown(test):
     sys.stderr = test.globs['oldstderr']
 
@@ -69,6 +78,7 @@ def tearDown(test):
     for name in test.globs['created_modules']:
         sys.modules.pop(name, None)
     warnings.warn = test.globs['saved_warn']
+
 
 def test_suite():
     checker = renormalizing.RENormalizing((
