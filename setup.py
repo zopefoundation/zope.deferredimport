@@ -29,13 +29,13 @@ def read(*rnames):
 
 setup(
     name='zope.deferredimport',
-    version = '3.5.1dev',
+    version = '3.5.1',
     url='http://pypi.python.org/pypi/zope.deferredimport',
     license='ZPL 2.1',
     description='zope.deferredimport allows you to perform imports names '
     'that will only be resolved when used in the code.',
     author='Zope Corporation and Contributors',
-    author_email='zope3-dev@zope.org',
+    author_email='zope-dev@zope.org',
     long_description=(
         read('README.txt')
         + '\n' +
