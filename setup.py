@@ -29,7 +29,7 @@ def read(*rnames):
 
 setup(
     name='zope.deferredimport',
-    version = '3.5.1',
+    version = '3.5.2dev',
     url='http://pypi.python.org/pypi/zope.deferredimport',
     license='ZPL 2.1',
     description='zope.deferredimport allows you to perform imports names '
