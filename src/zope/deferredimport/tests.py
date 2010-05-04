@@ -89,4 +89,5 @@ def test_suite():
         setUp=setUp, tearDown=tearDown,
         optionflags=doctest.NORMALIZE_WHITESPACE,
         checker=checker,
+        globs = {'__file__': os.path.join(os.path.dirname(__file__), 'README.txt')}
         )
