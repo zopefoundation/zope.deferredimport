@@ -1,6 +1,6 @@
 ##############################################################################
 #
-# Copyright (c) 2006 Zope Corporation and Contributors.
+# Copyright (c) 2006 Zope Foundation and Contributors.
 # All Rights Reserved.
 #
 # This software is subject to the provisions of the Zope Public License,
@@ -34,7 +34,7 @@ setup(
     license='ZPL 2.1',
     description='zope.deferredimport allows you to perform imports names '
     'that will only be resolved when used in the code.',
-    author='Zope Corporation and Contributors',
+    author='Zope Foundation and Contributors',
     author_email='zope-dev@zope.org',
     long_description=(
         read('README.txt')
