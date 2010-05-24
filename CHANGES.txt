@@ -1,7 +1,7 @@
 Changes
 =======
 
-3.5.2 (unreleased)
+3.5.2 (2010-05-24)
 ------------------
 
 - Fixed unit tests broken under Python 2.4 by the switch to the standard
