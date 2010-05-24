@@ -4,11 +4,16 @@ Changes
 3.5.2 (unreleased)
 ------------------
 
+- Fixed unit tests broken under Python 2.4 by the switch to the standard
+  library ``doctest`` module.
+
 
 3.5.1 (2010-04-30)
 ------------------
 
-- Prefer the standard libraries doctest module to the one from zope.testing.
+- Prefer the standard library's ``doctest`` module to the one from
+  ``zope.testing``.
+
 
 3.5.0 (2009-02-04)
 ------------------
@@ -17,13 +22,15 @@ Changes
 
 - Added reference documentation.
 
+
 3.4.0 (2007-07-19)
 ------------------
 
-- Finished release of zope.deferredimport.
+- Finished release of ``zope.deferredimport``.
+
 
 3.4.0b1 (2007-07-09)
 --------------------
 
-- Initial release as a separate project, corresponds to zope.deferredimport
-  from Zope 3.4.0b1.
+- Initial release as a separate project, corresponding to the
+  ``zope.deferredimport`` from Zope 3.4.0b1.
