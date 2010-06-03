@@ -12,8 +12,6 @@
 #
 ##############################################################################
 """Modules with defered attributes
-
-$Id$
 """
 import sys
 import warnings
