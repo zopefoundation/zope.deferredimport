@@ -44,11 +44,17 @@ setup(
         + '\n' +
         read('src', 'zope', 'deferredimport', 'README.txt')
         ),
-      
-      packages=find_packages('src'),
-      package_dir = {'': 'src'},
-      namespace_packages=['zope',],
-      install_requires=['zope.proxy', 'setuptools'],
-      include_package_data = True,
-      zip_safe = False,
-      )
+    packages=find_packages('src'),
+    package_dir = {'': 'src'},
+    namespace_packages=['zope',],
+    install_requires=[
+        'setuptools',
+        'zope.proxy',
+        ],
+    extras_require=dict(
+        test=[
+            'zope.testing',
+            ]),
+    include_package_data = True,
+    zip_safe = False,
+    )

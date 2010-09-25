@@ -5,7 +5,7 @@ Changes
 3.5.3 (unreleased)
 ------------------
 
-- TBD
+- Added test extra to declare test dependency on ``zope.testing``.
 
 
 3.5.2 (2010-05-24)
