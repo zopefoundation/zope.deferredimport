@@ -27,7 +27,7 @@ def read(*rnames):
 
 setup(
     name='zope.deferredimport',
-    version='3.5.4dev',
+    version='4.0.0dev',
     url='http://pypi.python.org/pypi/zope.deferredimport',
     license='ZPL 2.1',
     description='zope.deferredimport allows you to perform imports names '
@@ -44,6 +44,19 @@ setup(
         + '\n' +
         read('src', 'zope', 'deferredimport', 'README.txt')
         ),
+    classifiers=[
+        'Development Status :: 5 - Production/Stable',
+        'Intended Audience :: Developers',
+        'License :: OSI Approved :: Zope Public License',
+        'Programming Language :: Python',
+        'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 2.6',
+        'Programming Language :: Python :: 2.7',
+        'Natural Language :: English',
+        'Operating System :: OS Independent',
+        'Topic :: Internet :: WWW/HTTP',
+        'Topic :: Software Development',
+        ],
     packages=find_packages('src'),
     package_dir = {'': 'src'},
     namespace_packages=['zope',],
