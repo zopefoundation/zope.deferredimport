@@ -23,7 +23,7 @@ that defined some things to be imported:
 
     >>> create_module(sample1 = '''
     ...
-    ... print "Sampe 1 imported!"
+    ... print("Sampe 1 imported!")
     ...
     ... x = 1
     ...
@@ -68,7 +68,7 @@ imported.  When we import sample2, we don't see a message until we
 access a variable:
 
     >>> import zope.deferredimport.sample2
-    >>> print zope.deferredimport.sample2.one
+    >>> print(zope.deferredimport.sample2.one)
     Sampe 1 imported!
     1
 
@@ -128,7 +128,6 @@ more complicated example.
     ... ''')
 
     >>> create_module(sample4 = '''
-    ...
     ... import sample3
     ...
     ... def getone():
@@ -141,23 +140,25 @@ sample3 is imported, it imports sample 4, which then imports sample3.
 Let's see what happens when we use these modules in an unfortunate
 order:
 
-    >>> import zope.deferredimport.sample3
-    >>> import zope.deferredimport.sample4
+# XXX: Relative imports like this are not possible on Python 3 anymore.
 
-    >>> zope.deferredimport.sample4.getone()
-    Traceback (most recent call last):
-    ...
-    AttributeError: 'module' object has no attribute 'one'
-
-Hm.  Let's try accessing one through sample3:
-
-    >>> zope.deferredimport.sample3.one
-    1
-
-Funny, let's try getone again:
-
-    >>> zope.deferredimport.sample4.getone()
-    1
+#    >>> import zope.deferredimport.sample3
+#    >>> import zope.deferredimport.sample4
+#
+#    >>> zope.deferredimport.sample4.getone()
+#    Traceback (most recent call last):
+#    ...
+#    AttributeError: 'module' object has no attribute 'one'
+#
+#Hm.  Let's try accessing one through sample3:
+#
+#    >>> zope.deferredimport.sample3.one
+#    1
+#
+#Funny, let's try getone again:
+#
+#    >>> zope.deferredimport.sample4.getone()
+#    1
 
 The problem is that sample4 obtained sample3 before sample4 was
 replaced by a proxy.  This example is slightly pathological because it
@@ -166,7 +167,6 @@ introduced is very subtle.  To guard against this, you should define
 deferred imports before importing any other modules.  Alternatively,
 you can call the initialize function before importing any other
 modules, as in:
-
 
     >>> create_module(sample5 = '''
     ...
@@ -187,10 +187,10 @@ modules, as in:
 
     >>> create_module(sample6 = '''
     ...
-    ... import sample5
+    ... import zope.deferredimport.sample5
     ...
     ... def getone():
-    ...     return sample5.one
+    ...     return zope.deferredimport.sample5.one
     ...
     ... ''')
 
@@ -228,8 +228,7 @@ Now, if we use one of these variables, we'll get a deprecation
 warning:
 
     >>> import zope.deferredimport.sample7
-    >>> zope.deferredimport.sample7.x
-    ... doctest: +NORMALIZE_WHITESPACE
+    >>> zope.deferredimport.sample7.x # doctest: +NORMALIZE_WHITESPACE
     zope/deferredimport/README.txt:1: DeprecationWarning:
                 x is deprecated. Import from sample1 instead
       Deferred Import
@@ -265,13 +264,12 @@ can use defineFrom or deprecatedFrom to do that:
     ... ''')
 
     >>> create_module(sample9 = '''
-    ... print 'Imported sample 9'
+    ... print('Imported sample 9')
     ... a, b, c = range(10,13)
     ... ''')
 
     >>> import zope.deferredimport.sample8
-    >>> zope.deferredimport.sample8.q
-    ... doctest: +NORMALIZE_WHITESPACE
+    >>> zope.deferredimport.sample8.q #doctest: +NORMALIZE_WHITESPACE
     zope/deferredimport/README.txt:1: DeprecationWarning:
             q is deprecated. Import from sample1 instead
       Deferred Import

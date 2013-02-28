@@ -50,7 +50,7 @@ class DeferredAndDeprecated(Deferred):
         warnings.warn(
             self.__name__ + " is deprecated. " + self.message,
             DeprecationWarning, stacklevel=3)
-        
+
         return super(DeferredAndDeprecated, self).get()
 
 
@@ -65,7 +65,7 @@ class ModuleProxy(zope.proxy.ProxyBase):
         try:
             get = self.__deferred_definitions__.pop(name)
         except KeyError:
-            raise AttributeError, name
+            raise AttributeError(name)
         v = get.get()
         setattr(self, name, v)
         return v
@@ -108,7 +108,7 @@ def define(**names):
     """
     module = initialize(2)
     __deferred_definitions__ = module.__deferred_definitions__
-    for name, specifier in names.iteritems():
+    for name, specifier in names.items():
         __deferred_definitions__[name] = Deferred(name, specifier)
 
 def defineFrom(from_name, *names):
@@ -135,7 +135,7 @@ def deprecated(message, **names):
     """
     module = initialize(2)
     __deferred_definitions__ = module.__deferred_definitions__
-    for name, specifier in names.iteritems():
+    for name, specifier in names.items():
         __deferred_definitions__[name] = DeferredAndDeprecated(
             name, specifier, message)
 
