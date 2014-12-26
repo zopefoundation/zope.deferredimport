@@ -42,7 +42,7 @@ def alltests():
 
 setup(
     name='zope.deferredimport',
-    version='4.1.0',
+    version='4.1.1.dev0',
     url='http://pypi.python.org/pypi/zope.deferredimport',
     license='ZPL 2.1',
     description=('zope.deferredimport allows you to perform imports names '
