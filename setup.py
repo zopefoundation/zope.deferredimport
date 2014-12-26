@@ -50,14 +50,14 @@ setup(
     author='Zope Foundation and Contributors',
     author_email='zope-dev@zope.org',
     long_description=(
-        read('README.txt')
-        + '\n' +
-        read('CHANGES.txt')
+        read('README.rst')
         + '\n' +
         'Detailed Documentation\n'
         '======================\n'
         + '\n' +
         read('src', 'zope', 'deferredimport', 'README.txt')
+        + '\n' +
+        read('CHANGES.rst')
         ),
     classifiers=[
         'Development Status :: 5 - Production/Stable',

@@ -4,27 +4,27 @@ Changes
 4.0.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add support for testing on Travis.
 
 
 4.0.0 (2013-02-28)
 ------------------
 
-- Added support for Python 3.3.
+- Add support for Python 3.3.
 
-- Dropped support for Python 2.4 and 2.5.
+- Drop support for Python 2.4 and 2.5.
 
 
 3.5.3 (2010-09-25)
 ------------------
 
-- Added test extra to declare test dependency on ``zope.testing``.
+- Add test extra to declare test dependency on ``zope.testing``.
 
 
 3.5.2 (2010-05-24)
 ------------------
 
-- Fixed unit tests broken under Python 2.4 by the switch to the standard
+- Fix unit tests broken under Python 2.4 by the switch to the standard
   library ``doctest`` module.
 
 
@@ -38,15 +38,15 @@ Changes
 3.5.0 (2009-02-04)
 ------------------
 
-- Added support to bootstrap on Jython.
+- Add support to bootstrap on Jython.
 
-- Added reference documentation.
+- Add reference documentation.
 
 
 3.4.0 (2007-07-19)
 ------------------
 
-- Finished release of ``zope.deferredimport``.
+- Finish release of ``zope.deferredimport``.
 
 
 3.4.0b1 (2007-07-09)
