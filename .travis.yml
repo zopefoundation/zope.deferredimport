@@ -5,6 +5,9 @@ python:
     - 2.7
     - 3.3
     - 3.4
+    - pypy
+# Blocked on release of fix for: https://bitbucket.org/pypy/pypy/issue/1946
+#   - pypy3
 install:
     - pip install .
 script:
