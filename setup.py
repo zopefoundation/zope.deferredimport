@@ -51,12 +51,7 @@ setup(
     author_email='zope-dev@zope.org',
     long_description=(
         read('README.rst')
-        + '\n' +
-        'Detailed Documentation\n'
-        '======================\n'
-        + '\n' +
-        read('src', 'zope', 'deferredimport', 'README.txt')
-        + '\n' +
+        + '\n\n' +
         read('CHANGES.rst')
         ),
     classifiers=[

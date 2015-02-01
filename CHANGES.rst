@@ -4,7 +4,8 @@ Changes
 4.1.1 (unreleased)
 ------------------
 
-- TBD
+- Convert doctests to Sphinx documentation, including building docs
+  and running doctest snippets under ``tox``.
 
 
 4.1.0 (2014-12-26)
