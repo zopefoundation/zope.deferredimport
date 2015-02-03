@@ -81,9 +81,8 @@ setup(
         ],
     extras_require=dict(
         test=[
-            'zope.testing',
             ]),
-    tests_require=['zope.testing', 'zope.testrunner'],
+    tests_require=['zope.testrunner'],
     test_suite = '__main__.alltests',
     include_package_data = True,
     zip_safe = False,
