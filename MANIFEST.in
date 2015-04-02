@@ -7,5 +7,3 @@ include tox.ini
 recursive-include src *
 
 global-exclude *.pyc
-global-exclude *.so
-global-exclude *.dll
