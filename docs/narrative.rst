@@ -1,5 +1,6 @@
-Deferred Imports
-================
+==================
+ Deferred Imports
+==================
 
 .. testsetup::
 
@@ -64,7 +65,7 @@ in modules that will be imported from somewhere else when used.  You
 can also cause deprecation warnings to be issued when a variable is
 used, but we'll get to that later.
 
-The zope.deferredimport.define function can be used to define one or
+The :func:`zope.deferredimport.define` function can be used to define one or
 more names to be imported when they are accessed.  Simply provide
 names as keyword arguments with import specifiers as values.  The
 import specifiers are given as strings of the form "module:name",
@@ -278,7 +279,7 @@ modules, as in:
 
 
 Deprecation
------------
+===========
 
 Deferred attributes can also be marked as deprecated, in which case, a
 message will be printed the first time they are accessed.
@@ -311,7 +312,7 @@ warning:
     >>> zope.deferredimport.sample7.x # doctest: +NORMALIZE_WHITESPACE
     docs/narrative.rst:1: DeprecationWarning:
                 x is deprecated. Import from sample1 instead
-      Deferred Imports
+      ==================
     1
 
 but only the first time:
@@ -322,10 +323,10 @@ but only the first time:
     1
 
 Importing multiple names from the same module
----------------------------------------------
+=============================================
 
 Sometimes, you want to get multiple things from the same module.  You
-can use defineFrom or deprecatedFrom to do that:
+can use :func:`~.defineFrom` or :func:`~.deprecatedFrom` to do that:
 
 
 .. doctest::
@@ -356,7 +357,7 @@ can use defineFrom or deprecatedFrom to do that:
     >>> zope.deferredimport.sample8.q #doctest: +NORMALIZE_WHITESPACE
     docs/narrative.rst:1: DeprecationWarning:
             q is deprecated. Import from sample1 instead
-      Deferred Imports
+      ==================
     4
 
     >>> zope.deferredimport.sample8.c

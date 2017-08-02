@@ -91,7 +91,7 @@ def initialize(level=1):
     """
     __name__ = sys._getframe(level).f_globals['__name__']
     module = sys.modules[__name__]
-    if not (type(module) is ModuleProxy):
+    if type(module) is not ModuleProxy:
         module = ModuleProxy(module)
         sys.modules[__name__] = module
 

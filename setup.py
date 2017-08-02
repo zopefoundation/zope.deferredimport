@@ -22,10 +22,10 @@ import os
 from setuptools import setup, find_packages
 
 def read(*rnames):
-    return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
+    with open(os.path.join(os.path.dirname(__file__), *rnames)) as f:
+        return f.read()
 
 def alltests():
-    import os
     import sys
     import unittest
     # use the zope.testrunner machinery to find all the
@@ -39,11 +39,19 @@ def alltests():
     suites = list(zope.testrunner.find.find_suites(options))
     return unittest.TestSuite(suites)
 
+TESTS_REQUIRE = [
+    'zope.testrunner',
+]
+
+DOCS_REQUIRE = [
+    'Sphinx',
+    'repoze.sphinx.autointerface',
+]
 
 setup(
     name='zope.deferredimport',
     version='4.2.0.dev0',
-    url='http://pypi.python.org/pypi/zope.deferredimport',
+    url='http://github.com/zopefoundation/zope.deferredimport',
     license='ZPL 2.1',
     description=('zope.deferredimport allows you to perform imports names '
                  'that will only be resolved when used in the code.'),
@@ -53,7 +61,7 @@ setup(
         read('README.rst')
         + '\n\n' +
         read('CHANGES.rst')
-        ),
+    ),
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
@@ -62,28 +70,29 @@ setup(
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: Implementation :: CPython',
         'Programming Language :: Python :: Implementation :: PyPy',
         'Natural Language :: English',
         'Operating System :: OS Independent',
         'Topic :: Internet :: WWW/HTTP',
         'Topic :: Software Development',
-        ],
+    ],
     packages=find_packages('src'),
-    package_dir = {'': 'src'},
+    package_dir={'': 'src'},
     namespace_packages=['zope',],
     install_requires=[
         'setuptools',
         'zope.proxy',
-        ],
-    extras_require=dict(
-        test=[
-            ]),
-    tests_require=['zope.testrunner'],
-    test_suite = '__main__.alltests',
-    include_package_data = True,
-    zip_safe = False,
-    )
+    ],
+    extras_require={
+        'test': TESTS_REQUIRE,
+        'docs': DOCS_REQUIRE,
+    },
+    tests_require=TESTS_REQUIRE,
+    test_suite='__main__.alltests',
+    include_package_data=True,
+    zip_safe=False,
+)
