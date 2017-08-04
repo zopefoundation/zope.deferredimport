@@ -1,0 +1,13 @@
+[run]
+source = zope.deferredimport
+omit =
+   src/zope/deferredimport/samples/sample*.py
+
+[report]
+precision = 2
+exclude_lines =
+    pragma: no cover
+    if __name__ == '__main__':
+    raise NotImplementedError
+    self.fail
+    raise AssertionError

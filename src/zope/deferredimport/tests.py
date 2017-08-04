@@ -44,7 +44,15 @@ class DeferredTests(unittest.TestCase):
         self.assertTrue(deferred.get() is self._getTargetClass())
 
 
+class TestModuleProxy(unittest.TestCase):
+
+    def test_getattr_with_no_deferred(self):
+        from zope.deferredimport.deferredmodule import ModuleProxy
+        proxy = ModuleProxy(self)
+        with self.assertRaises(AttributeError):
+            getattr(proxy, 'no_name')
+
+
+
 def test_suite():
-    return unittest.TestSuite((
-        unittest.makeSuite(DeferredTests),
-    ))
+    return unittest.defaultTestLoader.loadTestsFromName(__name__)
