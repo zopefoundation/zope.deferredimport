@@ -10,7 +10,7 @@
         :target: https://pypi.org/project/zope.deferredimport/
         :alt: Supported Python versions
 
-.. image:: https://travis-ci.org/zopefoundation/zope.deferredimport.png?branch=master
+.. image:: https://travis-ci.org/zopefoundation/zope.deferredimport.svg?branch=master
         :target: https://travis-ci.org/zopefoundation/zope.deferredimport
 
 .. image:: https://coveralls.io/repos/github/zopefoundation/zope.deferredimport/badge.svg?branch=master
