@@ -2,7 +2,7 @@
  Changes
 =========
 
-4.2.1 (unreleased)
+4.2.1 (2017-10-24)
 ==================
 
 - Preserve the docstrings of proxied modules created with
