@@ -52,6 +52,17 @@ class TestModuleProxy(unittest.TestCase):
         with self.assertRaises(AttributeError):
             getattr(proxy, 'no_name')
 
+    def test_preserves_docstring(self):
+        from zope.deferredimport import deferredmodule
+
+        proxy = deferredmodule.ModuleProxy(deferredmodule)
+        self.assertEqual(deferredmodule.__doc__, proxy.__doc__)
+
+    def test_preserves_name(self):
+        from zope.deferredimport import deferredmodule
+
+        proxy = deferredmodule.ModuleProxy(deferredmodule)
+        self.assertEqual(deferredmodule.__name__, proxy.__name__)
 
 
 def test_suite():

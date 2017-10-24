@@ -5,7 +5,9 @@
 4.2.1 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Preserve the docstrings of proxied modules created with
+  ``deprecatedFrom``, ``deferredFrom``, etc. See `issue 5
+  <https://github.com/zopefoundation/zope.deferredimport/issues/5>`_.
 
 
 4.2.0 (2017-08-08)
