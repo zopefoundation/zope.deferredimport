@@ -55,11 +55,12 @@ class DeferredAndDeprecated(Deferred):
 
 
 class ModuleProxy(zope.proxy.ProxyBase):
-    __slots__ = ('__deferred_definitions__', )
+    __slots__ = ('__deferred_definitions__', '__doc__')
 
     def __init__(self, module):
         super(ModuleProxy, self).__init__(module)
         self.__deferred_definitions__ = {}
+        self.__doc__ = module.__doc__
 
     def __getattr__(self, name):
         try:
