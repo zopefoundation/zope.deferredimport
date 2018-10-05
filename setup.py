@@ -21,23 +21,10 @@
 import os
 from setuptools import setup, find_packages
 
+
 def read(*rnames):
     with open(os.path.join(os.path.dirname(__file__), *rnames)) as f:
         return f.read()
-
-def alltests():
-    import sys
-    import unittest
-    # use the zope.testrunner machinery to find all the
-    # test suites we've put under ourselves
-    import zope.testrunner.find
-    import zope.testrunner.options
-    here = os.path.abspath(os.path.join(os.path.dirname(__file__), 'src'))
-    args = sys.argv[:]
-    defaults = ["--test-path", here]
-    options = zope.testrunner.options.get_options(args, defaults)
-    suites = list(zope.testrunner.find.find_suites(options))
-    return unittest.TestSuite(suites)
 
 TESTS_REQUIRE = [
     'zope.testrunner',
@@ -83,7 +70,7 @@ setup(
     ],
     packages=find_packages('src'),
     package_dir={'': 'src'},
-    namespace_packages=['zope',],
+    namespace_packages=['zope'],
     install_requires=[
         'setuptools',
         'zope.proxy',
@@ -92,8 +79,6 @@ setup(
         'test': TESTS_REQUIRE,
         'docs': DOCS_REQUIRE,
     },
-    tests_require=TESTS_REQUIRE,
-    test_suite='__main__.alltests',
     include_package_data=True,
     zip_safe=False,
 )
