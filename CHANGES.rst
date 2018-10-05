@@ -5,7 +5,7 @@
 4.2.2 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Add support for Python 3.7.
 
 
 4.2.1 (2017-10-24)
