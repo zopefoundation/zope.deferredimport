@@ -64,11 +64,15 @@ class ModuleProxy(zope.proxy.ProxyBase):
 
     def __getattr__(self, name):
         try:
-            get = self.__deferred_definitions__.pop(name)
+            get = self.__deferred_definitions__[name]
         except KeyError:
             raise AttributeError(name)
         v = get.get()
         setattr(self, name, v)
+        try:
+            del self.__deferred_definitions__[name]
+        except KeyError:
+            pass
         return v
 
 def initialize(level=1):

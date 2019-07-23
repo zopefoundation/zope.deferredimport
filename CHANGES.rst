@@ -5,7 +5,8 @@
 4.4 (unreleased)
 ================
 
-- Nothing changed yet.
+- Avoid race condition in ``deferredmodule.ModuleProxy.__getattr__``
+  `#8 <https://github.com/zopefoundation/zope.deferredimport/issues/8>`_.
 
 
 4.3 (2018-10-05)
