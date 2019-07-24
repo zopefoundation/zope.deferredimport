@@ -71,7 +71,7 @@ class ModuleProxy(zope.proxy.ProxyBase):
         setattr(self, name, v)
         try:
             del self.__deferred_definitions__[name]
-        except KeyError:
+        except KeyError:  # pragma: no cover
             pass
         return v
 
