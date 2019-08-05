@@ -2,8 +2,8 @@
  Changes
 =========
 
-4.4 (unreleased)
-================
+4.3.1 (2019-08-05)
+==================
 
 - Avoid race condition in ``deferredmodule.ModuleProxy.__getattr__``
   `#8 <https://github.com/zopefoundation/zope.deferredimport/issues/8>`_.
