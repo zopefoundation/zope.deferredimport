@@ -5,7 +5,9 @@
 4.4 (unreleased)
 ================
 
-- Nothing changed yet.
+- Add support for Python 3.8, 3.9 and 3.10.
+
+- Drop support for Python 3.4.
 
 
 4.3.1 (2019-08-05)

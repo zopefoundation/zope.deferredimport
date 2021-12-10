@@ -40,6 +40,7 @@ class Deferred(object):
                 v = getattr(v, n)
         return v
 
+
 class DeferredAndDeprecated(Deferred):
 
     def __init__(self, name, specifier, message):
@@ -75,6 +76,7 @@ class ModuleProxy(zope.proxy.ProxyBase):
             pass
         return v
 
+
 def initialize(level=1):
     """Prepare a module to support deferred imports.
 
@@ -104,6 +106,7 @@ def initialize(level=1):
         return
     return module
 
+
 def define(**names):
     """Define deferred imports using keyword parameters.
 
@@ -116,6 +119,7 @@ def define(**names):
     for name, specifier in names.items():
         __deferred_definitions__[name] = Deferred(name, specifier)
 
+
 def defineFrom(from_name, *names):
     """Define deferred imports from a particular module.
 
@@ -127,6 +131,7 @@ def defineFrom(from_name, *names):
     for name in names:
         specifier = from_name + ':' + name
         __deferred_definitions__[name] = Deferred(name, specifier)
+
 
 def deprecated(message, **names):
     """Define deferred and deprecated imports using keyword parameters.
@@ -143,6 +148,7 @@ def deprecated(message, **names):
     for name, specifier in names.items():
         __deferred_definitions__[name] = DeferredAndDeprecated(
             name, specifier, message)
+
 
 def deprecatedFrom(message, from_name, *names):
     """Define deferred and deprecated imports from a particular module.
