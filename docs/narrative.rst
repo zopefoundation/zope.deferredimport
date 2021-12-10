@@ -81,17 +81,17 @@ that defined some things to be imported:
 .. doctest::
 
     >>> create_module(sample1 = '''
-    ...
     ... print("Sampe 1 imported!")
     ...
     ... x = 1
     ...
+    ...
     ... class C:
     ...     y = 2
     ...
+    ...
     ... z = 3
     ... q = 4
-    ...
     ... ''')
 
 Note that the module starts by printing a message.  This allows us to
@@ -102,20 +102,20 @@ that imports some names from this module:
 .. doctest::
 
     >>> create_module(sample2 = '''
-    ...
     ... import zope.deferredimport
     ...
     ... zope.deferredimport.define(
-    ...     sample1 = 'zope.deferredimport.sample1',
-    ...     one = 'zope.deferredimport.sample1:x',
-    ...     two = 'zope.deferredimport.sample1:C.y',
+    ...     sample1='zope.deferredimport.sample1',
+    ...     one='zope.deferredimport.sample1:x',
+    ...     two='zope.deferredimport.sample1:C.y',
     ...     )
     ...
     ... three = 3
     ... x = 4
+    ...
+    ...
     ... def getx():
     ...     return x
-    ...
     ... ''')
 
 
@@ -185,28 +185,28 @@ more complicated example.
 
 .. doctest::
 
-    >>> create_module(sample3 = '''
-    ...
-    ... import zope.deferredimport
-    ... import zope.deferredimport.sample4
-    ...
-    ... zope.deferredimport.define(
-    ...     sample1 = 'zope.deferredimport.sample1',
-    ...     one = 'zope.deferredimport.sample1:x',
-    ...     two = 'zope.deferredimport.sample1:C.y',
-    ...     )
-    ...
-    ... x = 1
-    ...
-    ... ''')
+    # >>> create_module(sample3 = '''
+    # ...
+    # ... import zope.deferredimport
+    # ... import zope.deferredimport.sample4
+    # ...
+    # ... zope.deferredimport.define(
+    # ...     sample1 = 'zope.deferredimport.sample1',
+    # ...     one = 'zope.deferredimport.sample1:x',
+    # ...     two = 'zope.deferredimport.sample1:C.y',
+    # ...     )
+    # ...
+    # ... x = 1
+    # ...
+    # ... ''')
 
-    >>> create_module(sample4 = '''
-    ... import sample3
-    ...
-    ... def getone():
-    ...     return sample3.one
-    ...
-    ... ''')
+    # >>> create_module(sample4 = '''
+    # ... import sample3
+    # ...
+    # ... def getone():
+    # ...     return sample3.one
+    # ...
+    # ... ''')
 
 Here, we have a circular import between sample3 and sample4.  When
 sample3 is imported, it imports sample 4, which then imports sample3.
@@ -216,6 +216,7 @@ order:
 .. code-block:: python
 
    # XXX: Relative imports like this are not possible on Python 3 anymore.
+   # PY2
    #
    #    >>> import zope.deferredimport.sample3
    #    >>> import zope.deferredimport.sample4
@@ -246,29 +247,25 @@ modules, as in:
 .. doctest::
 
     >>> create_module(sample5 = '''
-    ...
     ... import zope.deferredimport
     ... zope.deferredimport.initialize()
     ...
-    ... import zope.deferredimport.sample6
+    ... import zope.deferredimport.sample6  # noqa: E402 import not at top
     ...
     ... zope.deferredimport.define(
-    ...     sample1 = 'zope.deferredimport.sample1',
-    ...     one = 'zope.deferredimport.sample1:x',
-    ...     two = 'zope.deferredimport.sample1:C.y',
+    ...     sample1='zope.deferredimport.sample1',
+    ...     one='zope.deferredimport.sample1:x',
+    ...     two='zope.deferredimport.sample1:C.y',
     ...     )
     ...
     ... x = 1
-    ...
     ... ''')
 
     >>> create_module(sample6 = '''
-    ...
     ... import zope.deferredimport.sample5
     ...
     ... def getone():
     ...     return zope.deferredimport.sample5.one
-    ...
     ... ''')
 
     >>> import zope.deferredimport.sample5
@@ -290,17 +287,15 @@ deferred imports:
 .. doctest::
 
     >>> create_module(sample7 = '''
-    ...
     ... import zope.deferredimport
     ... zope.deferredimport.initialize()
     ...
     ... zope.deferredimport.deprecated(
     ...     "Import from sample1 instead",
-    ...     x = 'zope.deferredimport.sample1:x',
-    ...     y = 'zope.deferredimport.sample1:C.y',
-    ...     z = 'zope.deferredimport.sample1:z',
+    ...     x='zope.deferredimport.sample1:x',
+    ...     y='zope.deferredimport.sample1:C.y',
+    ...     z='zope.deferredimport.sample1:z',
     ...     )
-    ...
     ... ''')
 
 Now, if we use one of these variables, we'll get a deprecation
@@ -332,25 +327,23 @@ can use :func:`~.defineFrom` or :func:`~.deprecatedFrom` to do that:
 .. doctest::
 
     >>> create_module(sample8 = '''
-    ...
     ... import zope.deferredimport
     ...
     ... zope.deferredimport.deprecatedFrom(
     ...     "Import from sample1 instead",
     ...     'zope.deferredimport.sample1',
     ...     'x', 'z', 'q',
-    ...     )
+    ... )
     ...
     ... zope.deferredimport.defineFrom(
     ...     'zope.deferredimport.sample9',
     ...     'a', 'b', 'c',
-    ...     )
-    ...
+    ... )
     ... ''')
 
     >>> create_module(sample9 = '''
     ... print('Imported sample 9')
-    ... a, b, c = range(10,13)
+    ... a, b, c = range(10, 13)
     ... ''')
 
     >>> import zope.deferredimport.sample8

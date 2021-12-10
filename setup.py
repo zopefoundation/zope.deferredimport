@@ -26,6 +26,7 @@ def read(*rnames):
     with open(os.path.join(os.path.dirname(__file__), *rnames)) as f:
         return f.read()
 
+
 TESTS_REQUIRE = [
     'zope.testrunner',
 ]
@@ -42,6 +43,12 @@ setup(
     license='ZPL 2.1',
     description=('zope.deferredimport allows you to perform imports names '
                  'that will only be resolved when used in the code.'),
+    project_urls={
+        'Issue Tracker': ('https://github.com/zopefoundation/'
+                          'zope.deferredimport/issues'),
+        'Sources': 'https://github.com/zopefoundation/zope.deferredimport',
+    },
+
     author='Zope Foundation and Contributors',
     author_email='zope-dev@zope.org',
     long_description=(
@@ -57,10 +64,12 @@ setup(
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
         'Programming Language :: Python :: Implementation :: CPython',
         'Programming Language :: Python :: Implementation :: PyPy',
         'Natural Language :: English',
@@ -71,6 +80,7 @@ setup(
     packages=find_packages('src'),
     package_dir={'': 'src'},
     namespace_packages=['zope'],
+    python_requires='>=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*',
     install_requires=[
         'setuptools',
         'zope.proxy',
