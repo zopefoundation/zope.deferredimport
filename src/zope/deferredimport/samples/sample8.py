@@ -1,6 +1,7 @@
 
 import zope.deferredimport
 
+
 zope.deferredimport.deprecatedFrom(
     "Import from sample1 instead",
     'zope.deferredimport.sample1',
