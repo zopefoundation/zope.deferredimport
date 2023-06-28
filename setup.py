@@ -40,7 +40,7 @@ DOCS_REQUIRE = [
 
 setup(
     name='zope.deferredimport',
-    version='4.5.dev0',
+    version='5.0.dev0',
     url='http://github.com/zopefoundation/zope.deferredimport',
     license='ZPL 2.1',
     description=('zope.deferredimport allows you to perform imports names '
