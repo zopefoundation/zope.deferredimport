@@ -19,7 +19,7 @@ import warnings
 import zope.proxy
 
 
-class Deferred(object):
+class Deferred:
 
     def __init__(self, name, specifier):
         self.__name__ = name
@@ -45,7 +45,7 @@ class Deferred(object):
 class DeferredAndDeprecated(Deferred):
 
     def __init__(self, name, specifier, message):
-        super(DeferredAndDeprecated, self).__init__(name, specifier)
+        super().__init__(name, specifier)
         self.message = message
 
     def get(self):
@@ -53,14 +53,14 @@ class DeferredAndDeprecated(Deferred):
             self.__name__ + " is deprecated. " + self.message,
             DeprecationWarning, stacklevel=3)
 
-        return super(DeferredAndDeprecated, self).get()
+        return super().get()
 
 
 class ModuleProxy(zope.proxy.ProxyBase):
     __slots__ = ('__deferred_definitions__', '__doc__')
 
     def __init__(self, module):
-        super(ModuleProxy, self).__init__(module)
+        super().__init__(module)
         self.__deferred_definitions__ = {}
         self.__doc__ = module.__doc__
 
