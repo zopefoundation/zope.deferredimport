@@ -1,8 +1,11 @@
 
 import zope.deferredimport
+
+
 zope.deferredimport.initialize()
 
 import zope.deferredimport.sample6  # noqa: E402 import not at top
+
 
 zope.deferredimport.define(
     sample1='zope.deferredimport.sample1',
