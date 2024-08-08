@@ -1,7 +1,6 @@
 
 import zope.deferredimport
 
-
 zope.deferredimport.define(
     sample1='zope.deferredimport.sample1',
     one='zope.deferredimport.sample1:x',
