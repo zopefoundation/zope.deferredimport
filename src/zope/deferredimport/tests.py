@@ -35,13 +35,13 @@ class DeferredTests(unittest.TestCase):
         specifier = 'zope.deferredimport.deferredmodule'
         deferred = self._makeOne(name, specifier)
         from zope.deferredimport import deferredmodule
-        self.assertTrue(deferred.get() is deferredmodule)
+        self.assertIs(deferred.get(), deferredmodule)
 
     def test_get_module_and_name(self):
         name = 'TESTING'
         specifier = 'zope.deferredimport.deferredmodule:Deferred'
         deferred = self._makeOne(name, specifier)
-        self.assertTrue(deferred.get() is self._getTargetClass())
+        self.assertIs(deferred.get(), self._getTargetClass())
 
 
 class TestModuleProxy(unittest.TestCase):

@@ -1,4 +1,3 @@
-
 print("Sampe 1 imported!")
 
 x = 1

@@ -42,7 +42,7 @@ setup(
     name='zope.deferredimport',
     version='5.1.dev0',
     url='http://github.com/zopefoundation/zope.deferredimport',
-    license='ZPL 2.1',
+    license='ZPL-2.1',
     description=('zope.deferredimport allows you to perform imports names '
                  'that will only be resolved when used in the code.'),
     project_urls={
@@ -64,11 +64,11 @@ setup(
         'License :: OSI Approved :: Zope Public License',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: 3.10',
         'Programming Language :: Python :: 3.11',
         'Programming Language :: Python :: 3.12',
+        'Programming Language :: Python :: 3.13',
         'Programming Language :: Python :: Implementation :: CPython',
         'Programming Language :: Python :: Implementation :: PyPy',
         'Natural Language :: English',
@@ -79,7 +79,7 @@ setup(
     packages=find_packages('src'),
     package_dir={'': 'src'},
     namespace_packages=['zope'],
-    python_requires='>=3.8',
+    python_requires='>=3.9',
     install_requires=[
         'setuptools',
         'zope.proxy',
