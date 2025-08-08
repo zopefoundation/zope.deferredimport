@@ -1,4 +1,3 @@
-
 import zope.deferredimport
 
 
@@ -9,4 +8,4 @@ zope.deferredimport.deprecated(
     x='zope.deferredimport.sample1:x',
     y='zope.deferredimport.sample1:C.y',
     z='zope.deferredimport.sample1:z',
-    )
+)
