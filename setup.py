@@ -20,7 +20,6 @@
 """
 import os
 
-from setuptools import find_packages
 from setuptools import setup
 
 
@@ -30,7 +29,7 @@ def read(*rnames):
 
 
 TESTS_REQUIRE = [
-    'zope.testrunner',
+    'zope.testrunner >= 6.4',
 ]
 
 DOCS_REQUIRE = [
@@ -40,7 +39,7 @@ DOCS_REQUIRE = [
 
 setup(
     name='zope.deferredimport',
-    version='5.2.dev0',
+    version='6.0.dev0',
     url='http://github.com/zopefoundation/zope.deferredimport',
     license='ZPL-2.1',
     description=('zope.deferredimport allows you to perform imports names '
@@ -76,9 +75,6 @@ setup(
         'Topic :: Internet :: WWW/HTTP',
         'Topic :: Software Development',
     ],
-    packages=find_packages('src'),
-    package_dir={'': 'src'},
-    namespace_packages=['zope'],
     python_requires='>=3.9',
     install_requires=[
         'setuptools',
