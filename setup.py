@@ -77,7 +77,6 @@ setup(
     ],
     python_requires='>=3.9',
     install_requires=[
-        'setuptools',
         'zope.proxy',
     ],
     extras_require={
