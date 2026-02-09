@@ -13,6 +13,9 @@
 
 - Remove run-time dependency on ``setuptools``.
 
+- Adjust ``narrative`` doctest so that the sample files it generates match
+  those in git again.
+
 
 6.0 (2025-09-12)
 ================
