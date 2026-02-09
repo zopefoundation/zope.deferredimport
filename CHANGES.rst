@@ -7,6 +7,9 @@
 
 - Remove run-time dependency on ``setuptools``.
 
+- Pin GitHub Actions ``pre-commit`` workflow to Python <3.14 until
+  https://github.com/isidentical/refactor/issues/91 is fixed.
+
 
 6.0 (2025-09-12)
 ================
