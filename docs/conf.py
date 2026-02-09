@@ -19,6 +19,8 @@
 # sys.path.insert(0, os.path.abspath('.'))
 
 # -- General configuration ------------------------------------------------
+import datetime
+
 
 # If your documentation needs a minimal Sphinx version, state it here.
 # needs_sphinx = '1.0'
@@ -47,7 +49,9 @@ master_doc = "index"
 
 # General information about the project.
 project = "zope.deferredimport"
-copyright = "2015-2024, Zope Foundation and Contributors"
+copyright = (
+    f"2015-{datetime.datetime.now().year}, Zope Foundation and Contributors"
+)
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
