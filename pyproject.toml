@@ -7,7 +7,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "zope.deferredimport"
-version = "6.1.1"
+version = "6.2.dev0"
 description = "zope.deferredimport allows you to perform imports names that will only be resolved when used in the code."
 license = "ZPL-2.1"
 classifiers = [
